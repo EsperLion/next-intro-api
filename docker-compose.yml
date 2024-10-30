@@ -1,0 +1,24 @@
+version: "3.8" # Версия файла compose
+
+services:
+  postgres_db: # Имя сервиса для PostgreSQL
+    image: postgres:14.5 # Образ PostgreSQL, версия 14.5
+    container_name: postgres_container # Название контейнера
+    environment:
+      POSTGRES_USER: admin # Имя пользователя для БД
+      POSTGRES_PASSWORD: password # Пароль для пользователя БД
+      POSTGRES_DB: next_intro_db # Название создаваемой БД
+    ports:
+      - "5432:5432" # Пробрасываем порт 5432 на хост
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Хранение данных PostgreSQL на внешнем volume
+    networks:
+      - postgres_network # Название сети
+
+# Определение volumes для постоянного хранения данных
+volumes:
+  postgres_data:
+
+# Определение сети
+networks:
+  postgres_network:
