@@ -26,6 +26,12 @@
     },
     "ip_address": {
       "type": "string"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "contact"
     }
   }
 }

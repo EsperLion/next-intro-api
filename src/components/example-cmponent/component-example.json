@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_example_cmponent_component_examples",
+  "info": {
+    "displayName": "Component example",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "birth_date": {
+      "type": "date"
+    }
+  }
+}
