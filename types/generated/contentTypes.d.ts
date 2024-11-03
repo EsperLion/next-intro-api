@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   collectionName: 'abouts';
   info: {
+    description: '';
     displayName: 'About';
     pluralName: 'abouts';
     singularName: 'about';
@@ -380,14 +381,17 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    Content: Schema.Attribute.Blocks;
+    background: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    content: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
       Schema.Attribute.Private;
-    main_content: Schema.Attribute.RichText;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -455,6 +459,38 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLandingLanding extends Struct.SingleTypeSchema {
+  collectionName: 'landings';
+  info: {
+    displayName: 'landing';
+    pluralName: 'landings';
+    singularName: 'landing';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::landing.landing'
+    > &
+      Schema.Attribute.Private;
+    picture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -969,6 +1005,7 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::contact.contact': ApiContactContact;
+      'api::landing.landing': ApiLandingLanding;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

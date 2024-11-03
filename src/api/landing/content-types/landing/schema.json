@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "abouts",
+  "collectionName": "landings",
   "info": {
-    "singularName": "about",
-    "pluralName": "abouts",
-    "displayName": "About",
-    "description": ""
+    "singularName": "landing",
+    "pluralName": "landings",
+    "displayName": "landing"
   },
   "options": {
     "draftAndPublish": false
@@ -15,13 +14,7 @@
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "blocks"
-    },
-    "content": {
-      "type": "blocks"
-    },
-    "background": {
+    "picture": {
       "allowedTypes": [
         "images",
         "files",
@@ -29,7 +22,7 @@
         "audios"
       ],
       "type": "media",
-      "multiple": false
+      "multiple": true
     }
   }
 }
